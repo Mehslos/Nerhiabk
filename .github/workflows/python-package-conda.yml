@@ -1,4 +1,4 @@
-name: scr
+name: scrn
 on:
   workflow_dispatch:
 jobs:
