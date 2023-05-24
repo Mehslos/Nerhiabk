@@ -5,8 +5,8 @@ jobs:
   build_linux:
     name: Build Dev
     container:
-      image: ubuntu:18.04
-    runs-on: ubuntu-latest
+      image: ubuntu:20.04
+    runs-on: ubuntu-20.04
 
     strategy:
       fail-fast: true
