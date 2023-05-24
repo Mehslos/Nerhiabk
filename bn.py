@@ -38,8 +38,20 @@ for option in options:
 
 driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
 
-driver.get('http://nytimes.com')
-print(driver.title)
+driver.get('https://www.minitex.co/?r=73238')
+time.sleep(15)
+driver.find_element(by=By.XPATH, value='//*[@id="main"]/section[1]/div[2]/div/div[1]/div/a[1]').click()
+time.sleep(15)
+driver.find_element(by=By.XPATH, value='//*[@id="username"]').send_keys(names)
+time.sleep(4)
+driver.find_element(by=By.XPATH, value='//*[@id="email"]').send_keys(main)
+time.sleep(5)
+driver.find_element(by=By.XPATH, value='//*[@id="password"]').send_keys(main2)
+time.sleep(6)
+driver.find_element(by=By.XPATH, value='//*[@id="confirm"]').send_keys(main2)
+time.sleep(6)
+driver.find_element(by=By.XPATH, value='//*[@id="register_form"]/div/div[7]/button').click()
+time.sleep(10)
 
 
 
