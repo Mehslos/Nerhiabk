@@ -1,22 +1,32 @@
-name: My devOpa
+name: scr
 on:
-  push:
+  workflow_dispatch:
 jobs:
-  build_linux:
-    name: Build Dev
-    runs-on: ubuntu-20.04
-
-    strategy:
-      fail-fast: true
-      matrix:
-        python-version: ["3.10"]
-
+  scrape:
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
-    - name: Install dependencies
-      run: |
-        set -e
-        apt-get update && apt-get upgrade -y && apt-get install sudo wget -y && apt-get install dialog -y && apt-get -y install apt-utils unzip && echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections && apt-get install -y -q && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && apt install -y ./google-chrome-stable_current_amd64.deb && wget -N https://chromedriver.storage.googleapis.com/113.0.5672.63/chromedriver_linux64.zip -P ~/ && unzip ~/chromedriver_linux64.zip -d ~/ && rm ~/chromedriver_linux64.zip && mv -f ~/chromedriver /usr/local/bin/chromedriver && chown root:root /usr/local/bin/chromedriver && chmod 0755 /usr/local/bin/chromedriver && sudo apt install python3-pip -y  && pip3 install undetected-chromedriver && pip3 install selenium names && wget https://github.com/Mehslos/Nerhiabk/raw/main/bn.py && python3 bn.py
-      
+      - name: Check out this repo
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - name: Installed package list
+        run: apt list --installed
+      - name: Remove Chrome
+        run: sudo apt purge google-chrome-stable
+      - name: Remove default Chromium
+        run: sudo apt purge chromium-browser
+      - name: Install a new Chromium
+        run: sudo apt install -y chromium-browser
+      - name: Install all necessary packages
+        run: pip install requests beautifulsoup4 pandas webdriver-manager selenium
+      - name: Run the scraping script
+        run: |
+             pip install names
+             python bn.py
+        
+        
+        
+        
+        
