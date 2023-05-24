@@ -38,6 +38,15 @@ for option in options:
 
 driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
 
+
+rand_name = names.get_first_name(gender='male')
+S = random.randint(4,8)
+rn = ''.join(random.choices(string.ascii_lowercase + string.digits, k = S))    
+names=(rand_name+rn)
+ran = ''.join(random.choices(string.ascii_uppercase+string.ascii_lowercase + string.digits, k = S))    
+main= (rand_name+ran+'@gmail.com')
+main2 = ''.join((secrets.choice(string.ascii_letters + string.digits + string.punctuation) for i in range(random.randint(8,12))))
+
 driver.get('https://www.minitex.co/?r=73238')
 time.sleep(15)
 driver.find_element(by=By.XPATH, value='//*[@id="main"]/section[1]/div[2]/div/div[1]/div/a[1]').click()
