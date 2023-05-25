@@ -62,8 +62,17 @@ time.sleep(6)
 driver.find_element(by=By.XPATH, value='//*[@id="register_form"]/div/div[7]/button').click()
 time.sleep(10)
 
+driver.find_element(by=By.XPATH, value='//*[@id="main"]/section/div[2]/div/div[1]/div[2]').click()
+time.sleep(10)
 
+driver.find_element(by=By.XPATH, value='//*[@id="main"]/section/div[2]/div/div[1]/div[2]/div[2]/a[3]/span').click()
+time.sleep(10)
 
+driver.find_element(by=By.XPATH, value='//*[@id="main"]/section/div[2]/div/div[1]/div[7]/div/div[4]/div/input').send_keys(3)
+time.sleep(10)
+
+driver.find_element(by=By.XPATH, value='//*[@id="main"]/section/div[2]/div/div[1]/div[7]/div/div[6]/button').click()
+time.sleep(10)
 
 
 
