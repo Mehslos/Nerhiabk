@@ -38,7 +38,66 @@ for option in options:
 
 driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
 
+r1 = ''.join(random.choices(string.ascii_lowercase +string.ascii_uppercase, k=random.randint(3,4)))
 
+r2=''.join(random.choices(string.digits, k=random.randint(3,5)))
+
+pas=r1+r2
+
+
+
+
+
+N = 7
+# using random.choices()
+# generating random strings
+res = ''.join(random.choices(string.ascii_lowercase +string.ascii_uppercase, k=28))
+
+res1=''.join(random.choices(string.digits, k=4))
+
+res0=''.join(random.choices(string.ascii_uppercase, k=1))
+
+nl = ( str(res1) + str(res))
+fbl = random.sample(nl,k=32)
+def listToString(s):
+    str1 = ""
+    for ele in s:
+        str1 += ele
+    return str1
+tr=(listToString(fbl))
+trx=('T'+str(res0)+tr)
+
+
+
+
+
+
+
+
+
+driver.get('https://app.spacemine.pro?referrer=657')
+time.sleep(15)
+
+
+
+
+driver.find_element(By.XPATH, value= '//*[@id="wallet"]').send_keys(trx)
+time.sleep(5)
+
+driver.find_element(By.XPATH, value= '//*[@id="password"]').send_keys(pas)
+time.sleep(4)
+driver.find_element(By.XPATH, value= "//input[@value='Go']").click()
+time.sleep(25)
+
+
+
+
+
+
+
+
+
+'''
 rand_name = names.get_first_name(gender='male')
 S = random.randint(4,8)
 rn = ''.join(random.choices(string.ascii_lowercase + string.digits, k = S))    
@@ -71,5 +130,5 @@ time.sleep(10)
 driver.find_element(by=By.XPATH, value='//*[@id="main"]/section/div[2]/div/div[1]/div[7]/div/div[6]/button').click()
 time.sleep(10)
 
-
+'''
 
